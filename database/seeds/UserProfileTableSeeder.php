@@ -15,13 +15,19 @@ class UserProfileTableSeeder extends Seeder
         DB::table('user_profile')->insert([
         	'id'=>1,
         	'avatar_path'=>'images/avatar/myav.jpg',
-        	'address'=>'1 address'
+        	'address'=>'1 address',
+            'go_code'=>'1',
+            'first_name'=>'a',
+            'last_name'=>'b'
         ]);
 
         DB::table('user_profile')->insert([
         	'id'=>2,
         	'avatar_path'=>'images/avatar/myav.jpg',
-        	'address'=>'check address'
+        	'address'=>'check address',
+            'go_code'=>'2',
+            'first_name'=>'c',
+            'last_name'=>'d'
         ]);
     }
 }
