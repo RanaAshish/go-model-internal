@@ -24,7 +24,8 @@ Route::prefix('{language?}')->group(function ($language) {
 
 	$partials = [
 		'blog',
-		'model'
+		'model',
+		'partner'
 	];
 	
 
@@ -41,5 +42,5 @@ Route::prefix('{language?}')->group(function ($language) {
 	    require_once $file;
 	}
 
-	//Route::get('/blog','BlogController@index')->name('single-post-blog');
+	// Route::get('/blog','BlogController@index')->name('single-post-blog');
 });
