@@ -44,3 +44,4 @@ Route::prefix('{language?}')->group(function ($language) {
 
 	// Route::get('/blog','BlogController@index')->name('single-post-blog');
 });
+Route::get('/confirm_account/{id}','PartnerController@confirm_account');

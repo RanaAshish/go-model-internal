@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Validator;
+use Illuminate\Support\Facades\Mail;
 
 class PartnerController extends Controller
 {
@@ -39,10 +40,42 @@ class PartnerController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password1);
         $user->role = 3;
-        $user->user_status = "active";
+        $user->user_status = "inactive";
         $user->save();
+
+        $timestamp = time();
+        $data = array(
+            'name' => $request->username,
+            'link' => url('/').'/confirm_account/'.$timestamp.$timestamp*2*$user->id
+        );
+
+        $email = $request->email;
+        Mail::send('emails.welcome', $data, function ($message) use ($email) {
+            $message->from('hu.ashish.rana@gmail.com', 'Work scout');
+            $message->to($email)->subject('Registration successfull');
+        });
+
         $request->session()->flash('success', 'Partner registered successfully');
         return redirect($lang.'/partner/register');
       }
+    }
+
+    public function confirm_account($slug,Request $request){
+        $time = substr($slug,0,10);
+        $remain_slug = substr($slug, 10);
+
+        $id = $remain_slug/($time * 2);
+
+        $user = User::find($id);
+
+        if(isset($user) && !empty($user)){
+            $user->user_status = "active";
+            $user->save();
+
+            $request->session()->flash('success', 'Account activated successfully');
+            return redirect('en/partner/register');
+        } else {
+            echo "Invalid URL";
+        }
     }
 }

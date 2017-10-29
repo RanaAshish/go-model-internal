@@ -41,6 +41,19 @@ class ModelController extends Controller
         $user->role = 4;
         $user->user_status = "active";
         $user->save();
+
+        $timestamp = time();
+        $data = array(
+            'name' => $request->username,
+            'link' => url('/').'/confirm_account/'.$timestamp.$timestamp*2*$user->id
+        );
+
+        $email = $request->email;
+        Mail::send('emails.welcome', $data, function ($message) use ($email) {
+            $message->from('hu.ashish.rana@gmail.com', 'Work scout');
+            $message->to($email)->subject('Registration successfull');
+        });
+
         $request->session()->flash('success', 'Model registered successfully');
         return redirect($lang.'/model/register');
       }
