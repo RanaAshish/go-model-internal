@@ -22,7 +22,7 @@ class BlogController extends Controller
 
 
     	//$posts
-		
+
     	$this->data['posts'] = \App\Model\SinglePost::where('post_status','active')->where('admin_status',1)->paginate($this->postNumber);
 
     	return view('blog.index',$this->data);
