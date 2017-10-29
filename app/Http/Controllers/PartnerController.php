@@ -9,15 +9,16 @@ use Illuminate\Support\Facades\Mail;
 
 class PartnerController extends Controller
 {
-    //
 
+    // Load register view for model role
     public function register($lang){
-
     	return view("partner.register");
     }
 
-
+    // Perform registration actio and send email to user
     public function save_register($lang,Request $request){
+
+      // validation messages
       $message = [
         'username.required' => 'Username is required.',
         'email.required' => 'Email is required.',
@@ -26,15 +27,21 @@ class PartnerController extends Controller
         'password2.required' => 'Confirm password is required.',
         'password2.same' => 'Confirm password must be match with password.',
       ];
+
+      // Validation rules
       $validator = Validator::make($request->all(), [
           'username' => 'required',
           'email' => 'required|unique:users',
           'password1' => 'required',
           'password2' => 'required|same:password1',
       ],$message);
-      if ($validator->fails()) { 
+
+
+      if ($validator->fails()) {  // Check validation
         return redirect($lang.'/partner/register')->withErrors($validator)->withInput();
       }else{
+
+        // Insert user into database
         $user = new User;
         $user->name = $request->username;
         $user->email = $request->email;
@@ -43,12 +50,14 @@ class PartnerController extends Controller
         $user->user_status = "inactive";
         $user->save();
 
+        // Create slug for activate link
         $timestamp = time();
         $data = array(
             'name' => $request->username,
             'link' => url('/').'/confirm_account/'.$timestamp.$timestamp*2*$user->id
         );
 
+        // send email
         $email = $request->email;
         Mail::send('emails.welcome', $data, function ($message) use ($email) {
             $message->from('hu.ashish.rana@gmail.com', 'Work scout');
@@ -60,6 +69,7 @@ class PartnerController extends Controller
       }
     }
 
+    // Activate account if link is proper
     public function confirm_account($slug,Request $request){
         $time = substr($slug,0,10);
         $remain_slug = substr($slug, 10);
