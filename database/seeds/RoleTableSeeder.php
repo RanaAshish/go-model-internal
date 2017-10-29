@@ -23,5 +23,17 @@ class RoleTableSeeder extends Seeder
         	'name'=>'user',
         	'description'=>"Normal privilege"
         ]);
+
+        DB::table('user_role')->insert([
+        	'id'=>3,
+        	'name'=>'partner',
+        	'description'=>"Partner privilege"
+        ]);
+
+        DB::table('user_role')->insert([
+        	'id'=>4,
+        	'name'=>'model',
+        	'description'=>"Model privilege"
+        ]);
     }
 }
