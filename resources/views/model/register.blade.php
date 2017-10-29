@@ -24,9 +24,21 @@
 @section('content')
 
 <div class="container">
+@if ($errors->any())
+	<div class="notification error closeable">
+		@foreach ($errors->all() as $error)
+			<p>{{ $error }}</p>
+		@endforeach
+	</div>
+@endif
+@if (Session::has('success'))
+	<div class="notification success closeable">
+		<p><span>Success!</span> {{session('success')}}</p>
+	</div>
+@endif
 <div class="my-account">
 	<form method="post" class="register">
-		
+	{{ csrf_field() }}
 		<p class="form-row form-row-wide">
 			<label for="username2">Username:
 				<i class="ln ln-icon-Male"></i>
