@@ -13,8 +13,7 @@
 	<div class="container">
 
 		<div class="sixteen columns">
-			<h2>Register</h2>
-			<span>Keep up to date with the latest news</span>
+			<h2>Model Registeration</h2>
 		</div>
 
 	</div>
