@@ -80,14 +80,79 @@
                                     				</tr>
                                     			</tbody>
                                        		</table>
-                                       		<button type="button" class="btn btn-labeled btn-primary">
+                                       		<button type="button" class="btn btn-labeled btn-primary show-it" id="new-button">
                                                 <span class="btn-label">
                                                 	<i class="fa fa-plus" aria-hidden="true"></i>
                                                 
                                             	</span>Neu hinzufügen
                                         	</button>
                                     	</div>
-                                    
+                                        <div class="clearfix"></div>
+                                        <div class="row submit-panel">
+                                        <div class="col-sm-12">
+                                            <form class="form-horizontal" id="my-submit">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label></label>
+                                                        <input class="form-control"  placeholder="titel *" type="text" required>     
+                                                    </div>
+                                                                
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label> vondatum *</label>
+                                                        <input class="form-control" placeholder="01-01-2018" type="text">
+                                                    </div>
+                                                  
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                   
+                                                    <div class="form-group">
+                                                                   
+                                                                     <label>zuDatum *</label>
+                                                                        <input class="form-control"  placeholder="01-01-2018" type="text">
+                                                                   
+                                                    </div>
+                                                 
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                   
+                                                    <div class="form-group">
+                                                                   
+                                                                     <label></label>
+                                                                        <input class="form-control"  placeholder="Insitute" type="text">
+                                                                   
+                                                    </div>
+                                                 
+                                                </div>
+
+                                                <div class="col-md-12 col-sm-12">
+                                                   
+                                                        <div class="form-group">
+                                                                <label></label>
+                                                            <textarea name="about" class="textarea editor-cls" placeholder="Place some text here"></textarea>
+
+                                                        </div>
+                                                    
+
+                                                </div>
+                                                <div class="col-md-12 col-sm-12">
+                                                   
+                                                        <div class="form-group">
+                                                                <label></label>
+                                                                <button type="submit" lable-submit="Aktualisieren ..." lable-static="Neu hinzufügen" class="btn btn-primary">Neu hinzufügen
+                                                                </button>
+                                                                <button type="button" class="btn btn-danger cancel-panel">Annuleer
+                                                                </button>
+
+                                                        </div>
+                                                    
+
+                                                </div>
+                                            </form>
+                                            
+                                        </div>
+                                        </div>
                                     </div>
 
                                     <!-- AUSBILDUNG END !-->
@@ -183,3 +248,47 @@
 </form>
 
 @endsection
+
+
+@push('page-script')
+<script>
+$('.submit-panel').hide();
+$(".show-it").click(function(){
+
+
+    $(this).closest('.tab-pane').find('.submit-panel').toggle();
+});
+
+$('.cancel-panel').click(function(){
+
+    $(this).closest('.submit-panel').hide();
+
+});
+$('#my-submit').click(function(e){
+
+        var url = '<?php echo route("update-model",["type"=>"client-update","lang"=>"en"])?>';
+        var button = $(this);
+        var label_on = $(this).attr('lable-submit');
+        var label_off = $(this).attr('lable-static');
+        e.preventDefault();
+        var object = objectifyForm($('#client-form').serializeArray());
+        console.log(object);
+
+        $.post(url,{_token:token,object:object});
+
+        $.ajax({
+            method:'POST',
+            url:url,
+            data:{_token:token,object:object},
+            beforeSend:function(){
+                button.text(label_on);
+            },
+            complete:function(){
+                button.text(label_off);
+            }
+        });
+    });
+
+
+</script>
+@endpush

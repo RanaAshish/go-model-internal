@@ -49,14 +49,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('model-profile',['lang'=>$lang])}}">
+                        <a href="{{route('model.model.profile',['lang'=>$lang])}}">
                            
                              <i class="fa fa-fw fa-user"></i>
                             <span class="mm-text ">Mein Konto</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('model-prize',['lang'=>$lang])}}">
+                        <a href="{{route('model.model.profile')}}">
                             <i class="fa fa-file-o"></i>
                             <span class="mm-text ">Mein Model Profil</span>
                         </a>

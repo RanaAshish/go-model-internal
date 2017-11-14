@@ -1,0 +1,19 @@
+# give me your ip when you want to connect to db
+# connect db update .env
+DB_CONNECTION=mysql
+DB_HOST=103.74.119.132
+DB_PORT=3306
+DB_DATABASE=notstrivin_v3go
+DB_USERNAME=notstrivin_v3go
+DB_PASSWORD=RrekMiqe
+
+
+# using clear vue
+npm install
+bower install
+yarn install
+
+npm run dev         \\ to compile (note: need run it every change code vue)
+npm run watch       \\ auto compile
+
+Test working: http://domain/en/model

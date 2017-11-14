@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->integer('role')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->foreign('role')->references('id')->on('user_role')->onDelete('set null');
             $table->foreign('profile_id')->references('id')->on('user_profile')->onDelete('set null');
             $table->string('user_status');
         });

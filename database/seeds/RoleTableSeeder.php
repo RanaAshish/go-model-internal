@@ -1,39 +1,18 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
-class RoleTableSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        //
-        DB::table('user_role')->insert([
-        	'id'=>1,
-        	'name'=>'admin',
-        	'description'=>"Full privilege"
-        ]);
-
-        DB::table('user_role')->insert([
-        	'id'=>2,
-        	'name'=>'user',
-        	'description'=>"Normal privilege"
-        ]);
-
-        DB::table('user_role')->insert([
-        	'id'=>3,
-        	'name'=>'partner',
-        	'description'=>"Partner privilege"
-        ]);
-
-        DB::table('user_role')->insert([
-        	'id'=>4,
-        	'name'=>'model',
-        	'description'=>"Model privilege"
-        ]);
-    }
+class RoleTableSeeder extends Seeder {
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run() {
+		Role::create( [ 'name' => 'admin' ] );
+		Role::create( [ 'name' => 'user' ] );
+		Role::create( [ 'name' => 'partner' ] );
+		Role::create( [ 'name' => 'model' ] );
+	}
 }

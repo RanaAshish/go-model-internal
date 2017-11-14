@@ -60,7 +60,7 @@ class PartnerController extends Controller
         // send email
         $email = $request->email;
         Mail::send('emails.welcome', $data, function ($message) use ($email) {
-            $message->from('hu.ashish.rana@gmail.com', 'Work scout');
+            $message->from('support@go-models.com', 'go-models');
             $message->to($email)->subject('Registration successfull');
         });
 

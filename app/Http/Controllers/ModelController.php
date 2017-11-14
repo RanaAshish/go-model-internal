@@ -41,6 +41,7 @@ class ModelController extends Controller
           'password1' => 'required',
           'password2' => 'required|same:password1',
       ],$message);
+      
       if ($validator->fails()) {  // Check validation
         return redirect($lang.'/model/register')->withErrors($validator)->withInput();
       }else{

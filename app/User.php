@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -29,7 +30,8 @@ class User extends Authenticatable
 
     protected $table = "users";
 
-    function role(){
-        return  $this->belongsTo('App\Model\User', 'role','id');
+    function profile(){
+
+        return $this->hasOne('App\Model\UserProfile','id','profile_id');
     }
 }

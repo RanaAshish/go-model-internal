@@ -1,0 +1,17 @@
+https://laravelcollective.com/docs/master/html
+https://github.com/spatie/laravel-permission
+https://github.com/cviebrock/eloquent-sluggable
+https://github.com/barryvdh/laravel-debugbar/tree/2.4
+https://github.com/dingo/api
+https://github.com/Intervention/image
+https://github.com/tymondesigns/jwt-auth
+
+# Optional
+// use in auto complete ide
+https://github.com/barryvdh/laravel-ide-helper
+    php artisan clear-compiled
+    php artisan ide-helper:generate
+    #option: php artisan ide-helper:models Post
+    php artisan optimize
+
+
